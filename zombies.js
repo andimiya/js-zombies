@@ -151,14 +151,18 @@ class Player {
  */
 
   takeItem(item) {
+
     if (this._pack.length > 2) {
       console.log('The pack is full so the item could not be stored');
       return false;
     }
+
     else {
       this._pack.push(item);
+      console.log(this._pack);
       console.log(this.name + ' successfully added a ' + item.name + ' to their pack!');
       return true;
+
     }
   }
 
@@ -189,16 +193,11 @@ class Player {
  */
 
   discardItem(item){
-    let itemNumber = this._pack.indexOf(item);
-
-    console.log(itemNumber, 'itemNumber');
-    console.log(this._pack, 'thispack');
-    if (itemNumber !== -1) {
-      let removed = this._pack.splice(itemNumber, itemNumber + 1);
+    if(this._pack.indexOf(item) > -1){
+      this._pack.splice(this._pack.indexOf(item), 1);
+      console.log(this.name + ' discarded a ' + item.name);
       return true;
-    }
-    else {
-      console.log('Nothing was discarded because the item could not be found');
+    } else {
       return false;
     }
   }
@@ -223,6 +222,20 @@ class Player {
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
 
+ equip(itemToEquip) {
+
+  if (this._pack.indexOf(itemToEquip) > -1 && itemToEquip instanceof Weapon) {  //Player already has a Weapon equipped
+    if (this.equipped === false) {  // If player is not equipped
+      this.equipped = itemToEquip;  //Then equip the player with itemToEquip
+      this._pack.splice(this._pack.indexOf(itemToEquip), 1);  //remove the itemToEquip from the bag
+    }
+    else {  //If player is already equipped
+      var currentEquip = this._pack.splice(this._pack.indexOf(itemToEquip), 1, this.equipped);  //find the itemToEquip in the pack and replace it with the currently equippd item
+      this.equipped = currentEquip[0];
+    }
+  }
+
+}
 
 /**
  * Player Class Method => eat(itemToEat)
@@ -242,6 +255,10 @@ class Player {
  * @name eat
  * @param {Food} itemToEat  The food item to eat.
  */
+
+ eat(itemToEat) {
+
+ }
 
 
 /**
