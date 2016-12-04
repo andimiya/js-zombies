@@ -190,8 +190,12 @@ class Player {
 
   discardItem(item){
     let itemNumber = this._pack.indexOf(item);
+
+    console.log(itemNumber, 'itemNumber');
+    console.log(this._pack, 'thispack');
     if (itemNumber !== -1) {
       let removed = this._pack.splice(itemNumber, itemNumber + 1);
+      return true;
     }
     else {
       console.log('Nothing was discarded because the item could not be found');
