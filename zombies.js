@@ -128,8 +128,9 @@ class Player {
  * @name checkPack
  */
 
-  checkPack() {
-    console.log(getPack());
+  get checkPack() {
+    this.getPack();
+    console.log(item.name, 'itemname');
   }
 
 /**
@@ -151,7 +152,7 @@ class Player {
  */
 
   takeItem(item) {
-    if (this._pack.length >= 3) {
+    if (this._pack.length > 2) {
       console.log('The pack is full so the item could not be stored');
       return false;
     }
@@ -161,7 +162,6 @@ class Player {
       return true;
     }
   }
-
 
 /**
  * Player Class Method => discardItem(item)
@@ -189,6 +189,12 @@ class Player {
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
 
+// discardItem(item){
+//   let itemNumber = this._pack.indexOf(item);
+//   console.log(this._pack, 'thispack');
+//   console.log(itemNumber, 'itemNumber');
+//   console.log(item, 'item');
+// }
 
 /**
  * Player Class Method => equip(itemToEquip)
