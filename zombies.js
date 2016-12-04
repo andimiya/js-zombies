@@ -294,7 +294,6 @@ useItem(item) {
     this.health += item.energy;
     this._pack.splice(this._pack.indexOf(item), 1);
   }
-
 }
 
 /**
@@ -310,6 +309,17 @@ useItem(item) {
  * @name equippedWith
  * @return {string/boolean}   Weapon name or false if nothing is equipped.
  */
+
+  equippedWith() {
+    if (this.equipped !== false) {  // If nothing is equipped
+      console.log(this.name + ' is equipped with ' + this.equipped.name);  //Print the player's name and equipped weapon's name
+      return this.equipped.name;
+    }
+    else {
+      console.log(this.name + ' is not equipped with any weapons');  //Then print a message
+      return false;
+    }
+  }
 
 }
 
@@ -329,6 +339,14 @@ useItem(item) {
  * @property {boolean} isAlive      Default value should be `true`.
  */
 
+class Zombie {
+  constructor(health, strength, speed){
+    this.health = health;
+    this.strength = strength;
+    this.speed = speed;
+    this.isAlive = true;
+  }
+}
 
 /**
  * Class => FastZombie(health, strength, speed)
@@ -345,13 +363,16 @@ useItem(item) {
  * @param {number} speed            The zombie's speed.
  */
 
+class FastZombie extends Zombie {
+  constructor (health, strength, speed) {
+    super(health, strength, speed);
+  }
+}
 
 /**
  * FastZombie Extends Zombie Class
  * -----------------------------
  */
-
-
 
 /**
  * Class => StrongZombie(health, strength, speed)
