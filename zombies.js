@@ -128,9 +128,8 @@ class Player {
  * @name checkPack
  */
 
-  get checkPack() {
-    this.getPack();
-    console.log(item.name, 'itemname');
+  checkPack() {
+    console.log(this._pack);
   }
 
 /**
@@ -189,12 +188,16 @@ class Player {
  * @return {boolean} true/false     Whether player was able to remove item from pack.
  */
 
-// discardItem(item){
-//   let itemNumber = this._pack.indexOf(item);
-//   console.log(this._pack, 'thispack');
-//   console.log(itemNumber, 'itemNumber');
-//   console.log(item, 'item');
-// }
+  discardItem(item){
+    let itemNumber = this._pack.indexOf(item);
+    if (itemNumber !== -1) {
+      let removed = this._pack.splice(itemNumber, itemNumber + 1);
+    }
+    else {
+      console.log('Nothing was discarded because the item could not be found');
+      return false;
+    }
+  }
 
 /**
  * Player Class Method => equip(itemToEquip)
