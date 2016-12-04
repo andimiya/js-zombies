@@ -1,3 +1,5 @@
+ /*jshint esversion: 6 */
+
 /**
  * Class => Item(name)
  * -----------------------------
@@ -8,6 +10,11 @@
  * @property {string} name
  */
 
+class Item {
+  constructor (name) {
+    this.name = name;
+  }
+}
 
 /**
  * Class => Weapon(name, damage)
@@ -54,6 +61,10 @@
  * Food Extends Item Class
  * -----------------------------
  */
+
+
+class Player {
+
 
 
 
@@ -208,6 +219,7 @@
  * @return {string/boolean}   Weapon name or false if nothing is equipped.
  */
 
+}
 
 /**
  * Class => Zombie(health, strength, speed)
