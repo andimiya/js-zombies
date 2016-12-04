@@ -282,6 +282,20 @@ class Player {
  * @param {Item/Weapon/Food} item   The item to use.
  */
 
+useItem(item) {
+  console.log(item, 'useitem');
+  if (item instanceof Weapon){
+    this._pack.splice(this._pack.indexOf(item), 1);
+    this.equipped = item;
+
+    console.log(this.equipped);
+  }
+  if (item instanceof Food){
+    this.health += item.energy;
+    this._pack.splice(this._pack.indexOf(item), 1);
+  }
+
+}
 
 /**
  * Player Class Method => equippedWith()
