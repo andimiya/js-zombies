@@ -63,6 +63,7 @@ class Food extends Item {
   constructor (name, energy) {
     super(name);
     this.energy = energy;
+
   }
 }
 
@@ -222,20 +223,19 @@ class Player {
  * @param {Weapon} itemToEquip  The weapon item to equip.
  */
 
- equip(itemToEquip) {
+  equip(itemToEquip) {
 
-  if (this._pack.indexOf(itemToEquip) > -1 && itemToEquip instanceof Weapon) {  //Player already has a Weapon equipped
-    if (this.equipped === false) {  // If player is not equipped
-      this.equipped = itemToEquip;  //Then equip the player with itemToEquip
-      this._pack.splice(this._pack.indexOf(itemToEquip), 1);  //remove the itemToEquip from the bag
-    }
-    else {  //If player is already equipped
-      var currentEquip = this._pack.splice(this._pack.indexOf(itemToEquip), 1, this.equipped);  //find the itemToEquip in the pack and replace it with the currently equippd item
-      this.equipped = currentEquip[0];
+    if (this._pack.indexOf(itemToEquip) > -1 && itemToEquip instanceof Weapon) {  //Player already has a Weapon equipped
+      if (this.equipped === false) {  // If player is not equipped
+        this.equipped = itemToEquip;  //Then equip the player with itemToEquip
+        this._pack.splice(this._pack.indexOf(itemToEquip), 1);  //remove the itemToEquip from the bag
+      }
+      else {  //If player is already equipped
+        var currentEquip = this._pack.splice(this._pack.indexOf(itemToEquip), 1, this.equipped);  //find the itemToEquip in the pack and replace it with the currently equippd item
+        this.equipped = currentEquip[0];
+      }
     }
   }
-
-}
 
 /**
  * Player Class Method => eat(itemToEat)
@@ -256,9 +256,17 @@ class Player {
  * @param {Food} itemToEat  The food item to eat.
  */
 
- eat(itemToEat) {
+  eat(itemToEat) {
 
- }
+    if (this._pack.indexOf(itemToEat) > -1 && itemToEat instanceof Food) {  //Player can only eat Food instances. Player can only eat food items from their pack.
+      this._pack.splice(this._pack.indexOf(itemToEat), 1);  //Remove itemToEat from the pack
+      console.log(itemToEat.energy, 'energy');
+      this.health += itemToEat.energy;        // Increase the player's health by the food's energy amount
+      if (this.health > this._maxHealth) {  //If player's health exceeds the player's maxHealth,
+        this.health = this._maxHealth;     //Then set the player's health to maxHealth
+      }
+    }
+  }
 
 
 /**
