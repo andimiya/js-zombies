@@ -16,9 +16,6 @@ class Item {
   }
 }
 
-module.exports = {
-  item: Item
-};
 
 /**
  * Class => Weapon(name, damage)
@@ -36,6 +33,17 @@ module.exports = {
  * @property {number} damage
  */
 
+class Weapon extends Item {
+  constructor(name, damage){
+    super(name);
+    this.damage = damage;
+  }
+}
+
+module.exports = {
+  weapon: Weapon,
+  item: Item
+};
 
 /**
  * Weapon Extends Item Class
