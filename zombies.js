@@ -11,8 +11,8 @@
  */
 
 class Item {
-  constructor(){
-
+  constructor(name){
+    this.name = name;
   }
 }
 
